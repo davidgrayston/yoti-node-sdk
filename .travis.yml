@@ -8,7 +8,7 @@ node_js:
 before_script:
   - npm update --dev
   - cd ./examples/aml-check && npm update && cd ../../
-  - cd ./examples/profile && npm update cd ../../
+  - cd ./examples/profile && npm update && cd ../../
 
 script:
   - npm run lint
