@@ -5,7 +5,12 @@ node_js:
   - "9"
   - "10"
   - "11"
-  
+
+os:
+  - windows
+  - linux
+  - osx
+
 before_script:
   - npm update --dev
   - cd ./examples/aml-check && npm update && cd ../../
