@@ -17,5 +17,6 @@ before_script:
   - cd ./examples/profile && npm update && cd ../../
 
 script:
-  - npm run lint
+  - if: "$TRAVIS_OS_NAME" != "windows"
+    npm run lint
   - npm test
