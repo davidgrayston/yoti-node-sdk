@@ -22,6 +22,7 @@ before_install: npm install -g npm@latest
 install: npm ci
 
 script:
+  - npm audit
   - npm run lint
   - npm test
   - npm update
@@ -30,10 +31,6 @@ script:
 
 jobs:
   include:
-    - stage: Audit
-      node_js: "10"
-      script:
-        - npm audit
     - stage: Profile Example Lint
       node_js: "10"
       install: cd ./examples/aml-check && npm update
