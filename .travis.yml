@@ -17,6 +17,9 @@ jobs:
     - &test-latest
       stage: Compatibility
       node_js: "node"
+      os:
+        - linux
+        - osx
       install: npm update
       script:
         - npm test
