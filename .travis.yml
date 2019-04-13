@@ -13,6 +13,8 @@ node_js:
   - "11"
   - "node"
 
+before_install: npm install -g npm @latest
+
 install: npm ci
 
 script:
