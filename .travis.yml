@@ -5,32 +5,25 @@ cache: npm
 git:
   depth: 1
 
+node_js:
+  - "6"
+  - "8"
+  - "9"
+  - "10"
+  - "11"
+  - "node"
+
+install: npm ci
+
+script:
+  - npm run lint
+  - npm test
+  - npm update
+  - npm run lint
+  - npm test
+
 jobs:
   include:
-    - stage: Test
-      node_js:
-        - "6"
-        - "8"
-        - "9"
-        - "10"
-        - "11"
-        - "node"
-      install: npm ci
-      script:
-        - npm run lint
-        - npm test
-    - stage: Test (latest dependencies)
-      node_js:
-        - "6"
-        - "8"
-        - "9"
-        - "10"
-        - "11"
-        - "node"
-      install: npm update
-      script:
-        - npm run lint
-        - npm test
     - stage: Profile Example Lint
       node_js: "10"
       install: cd ./examples/aml-check && npm update
