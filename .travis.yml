@@ -1,38 +1,43 @@
 language: node_js
-node_js:
-  - "6"
-  - "8"
-  - "9"
-  - "10"
-  - "11"
-  - "node"
 
 cache: npm
 
 git:
   depth: 1
 
-os:
-  - linux
-  - osx
-
 jobs:
   include:
-    - stage: Test SDK
+    - stage: Test
+      node_js:
+        - "6"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "node"
       install: npm ci
       script:
         - npm run lint
         - npm test
-    - stage: Check latest dependencies
+    - stage: Test (latest dependencies)
+      node_js:
+        - "6"
+        - "8"
+        - "9"
+        - "10"
+        - "11"
+        - "node"
       install: npm update
       script:
         - npm run lint
         - npm test
-    - stage: Profile Example
+    - stage: Profile Example Lint
+      node_js: "10"
       install: cd ./examples/aml-check && npm update
       script:
         - npm run lint
-    - stage: AML Check Example
+    - stage: AML Check Example Lint
+      node_js: "10"
       install: cd ./examples/aml-check && npm update
       script:
         - npm run lint
