@@ -13,14 +13,12 @@ jobs:
       install: npm ci
       script:
         - npm audit
-        - npm run lint
         - npm test
     - &test-latest
       stage: Compatibility
       node_js: "node"
       install: npm update
       script:
-        - npm run lint
         - npm test
     - <<: *test-latest
       node_js: "6"
