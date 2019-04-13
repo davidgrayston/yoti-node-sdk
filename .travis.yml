@@ -1,11 +1,4 @@
 language: node_js
-node_js:
-  - "6"
-  - "8"
-  - "9"
-  - "10"
-  - "11"
-  - "node"
 
 cache: npm
 
@@ -24,15 +17,15 @@ jobs:
         - npm run lint
         - npm test
     - stage: Check latest dependencies
-        install: npm update
-        script:
-          - npm run lint
-          - npm test
+      install: npm update
+      script:
+        - npm run lint
+        - npm test
     - stage: Profile Example
-        install: cd ./examples/aml-check && npm update
-        script:
-          - npm run lint
+      install: cd ./examples/aml-check && npm update
+      script:
+        - npm run lint
     - stage: AML Check Example
-          install: cd ./examples/aml-check && npm update
-          script:
-            - npm run lint
+      install: cd ./examples/aml-check && npm update
+      script:
+        - npm run lint
