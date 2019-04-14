@@ -36,15 +36,7 @@ jobs:
       stage: Compatibility (OSX)
       os: osx
     - <<: *test-latest-osx
-      node_js: "6"
-    - <<: *test-latest-osx
-      node_js: "8"
-    - <<: *test-latest-osx
-      node_js: "9"
-    - <<: *test-latest-osx
       node_js: "10"
-    - <<: *test-latest-osx
-      node_js: "11"
     - stage: Profile Example Lint
       node_js: "10"
       install:
