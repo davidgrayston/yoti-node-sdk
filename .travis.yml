@@ -5,22 +5,35 @@ cache: npm
 git:
   depth: 1
 
+tasks:
+  - &test
+    stage: Test
+    node_js: "10"
+    before_install: npm install -g npm@latest
+    install: npm ci
+    script:
+      - npm audit
+      - npm test
+  - &test-latest
+    stage: Compatibility
+    node_js: "node"
+    os: linux
+    install: npm update
+    script:
+      - npm test
+  - &test-latest-osx
+    <<: *test-latest
+    os: osx
+  - &lint-examples
+    stage: Lint Examples
+    node_js: "10"
+    script:
+      - npm run lint
+
 jobs:
   include:
-    - stage: Test
-      node_js: "10"
-      before_install: npm install -g npm@latest
-      install: npm ci
-      script:
-        - npm audit
-        - npm test
-    - &test-latest
-      stage: Compatibility
-      node_js: "node"
-      os: linux
-      install: npm update
-      script:
-        - npm test
+    - <<: *test
+    - <<: *test-latest
     - <<: *test-latest
       node_js: "6"
     - <<: *test-latest
@@ -31,23 +44,14 @@ jobs:
       node_js: "10"
     - <<: *test-latest
       node_js: "11"
-    - &test-latest-osx
-      <<: *test-latest
-      stage: Compatibility (OSX)
-      os: osx
+      <<: *test-latest-osx
     - <<: *test-latest-osx
       node_js: "10"
-    - stage: Profile Example Lint
-      node_js: "10"
+    - <<: *lint-examples
       install:
         - cd ./examples/aml-check
         - npm update
-      script:
-        - npm run lint
-    - stage: AML Check Example Lint
-      node_js: "10"
+    - <<: *lint-examples
       install:
-        - cd ./examples/aml-check
+        - cd ./examples/profile
         - npm update
-      script:
-        - npm run lint
