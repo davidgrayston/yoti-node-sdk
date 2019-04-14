@@ -44,7 +44,7 @@ jobs:
       node_js: "10"
     - <<: *test-latest
       node_js: "11"
-      <<: *test-latest-osx
+    - <<: *test-latest-osx
     - <<: *test-latest-osx
       node_js: "10"
     - <<: *lint-examples
