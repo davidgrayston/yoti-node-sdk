@@ -32,7 +32,7 @@ jobs:
     - <<: *test-compatibility
       node_js: "11"
     - &test-compatibility-osx
-      <<: *test-latest
+      <<: *test-compatibility
       os: osx
     - <<: *test-compatibility-osx
       node_js: "10"
