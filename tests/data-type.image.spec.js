@@ -3,11 +3,7 @@ const Image = require('../src/data_type/image');
 const ImageJpeg = require('../src/data_type/image.jpeg');
 const ImagePng = require('../src/data_type/image.png');
 
-const imageContent = {
-  toBase64() {
-    return 'test_image_data';
-  },
-};
+const imageContent = 'test image content';
 
 const imageTypes = [
   {
@@ -29,7 +25,7 @@ imageTypes.forEach((type) => {
     });
     context('#getBase64Content()', () => {
       it('should return base64 image content', () => {
-        const base64String = `data:${type.mimeType};base64,${imageContent.toBase64()}`;
+        const base64String = `data:${type.mimeType};base64,${Buffer.from(imageContent).toString('base64')}`;
         expect(type.imageObj.getBase64Content()).to.equal(base64String);
       });
     });

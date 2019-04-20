@@ -53,9 +53,9 @@ module.exports.AttributeConverter = class AttributeConverter {
         return JSON.parse(attrValue);
       }
       case CONTENT_TYPE_JPEG:
-        return new ImageJpeg(value);
+        return new ImageJpeg(value.toArrayBuffer());
       case CONTENT_TYPE_PNG:
-        return new ImagePng(value);
+        return new ImagePng(value.toArrayBuffer());
       case CONTENT_TYPE_MULTI_VALUE:
         return AttributeConverter.convertMultiValue(value);
       case CONTENT_TYPE_INT:

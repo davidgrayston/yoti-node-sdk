@@ -7,7 +7,7 @@ module.exports = class Image {
   /**
    * Image constructor.
    *
-   * @param {ByteBuffer} content
+   * @param {ArrayBuffer} content
    * @param {string} mimeType
    */
   constructor(content, mimeType) {
@@ -24,7 +24,7 @@ module.exports = class Image {
   /**
    * Get the raw image content.
    *
-   * @returns {ByteBuffer}
+   * @returns {ArrayBuffer}
    */
   getContent() {
     return this.content;
@@ -36,7 +36,8 @@ module.exports = class Image {
    * @returns {string}
    */
   getBase64Content() {
-    return `data:${this.getMimeType()};base64,${this.content.toBase64()}`;
+    const base64Content = Buffer.from(this.content).toString('base64');
+    return `data:${this.getMimeType()};base64,${base64Content}`;
   }
 
   /**

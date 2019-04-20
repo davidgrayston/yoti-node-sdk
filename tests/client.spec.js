@@ -47,7 +47,7 @@ describe('yotiClient', () => {
             expect(activityDetails.getRememberMeId()).to.equal(rememberMeId);
             expect(activityDetails.getParentRememberMeId()).to.equal(parentRememberMeId);
             expect(profile.phoneNumber).to.equal(phoneNumber);
-            expect(`data:image/jpeg;base64,${profile.selfie.toBase64()}`).to.equal(selfie);
+            expect(`data:image/jpeg;base64,${Buffer.from(profile.selfie).toString('base64')}`).to.equal(selfie);
             expect(activityDetails.getBase64SelfieUri()).to.equal(selfie);
             expect(outcome).to.equal('SUCCESS');
 
